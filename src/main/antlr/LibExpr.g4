@@ -1,13 +1,13 @@
 grammar LibExpr;
 import CommonLexerRules;
 prog: stat+ ;
-stat: expr NEWLINE
-    | ID '=' expr NEWLINE
-    | NEWLINE
+stat: expr NEWLINE                  # printExpr
+    | ID '=' expr NEWLINE           # assign
+    | NEWLINE                       # blank
     ;
-expr: expr ('*'|'/') expr
-    | expr ('+'|'-') expr
-    | INT
-    | ID
-    | '(' expr ')'
+expr: expr ('*'|'/') expr           # MulDiv
+    | expr ('+'|'-') expr           # AddSub
+    | INT                           # int
+    | ID                            # id
+    | '(' expr ')'                  # parens
     ;
